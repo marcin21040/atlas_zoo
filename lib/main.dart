@@ -134,30 +134,28 @@ class _AnimalListPageState extends State<AnimalListPage> {
                 context: context,
                 builder: (_) => AlertDialog(
                   title: Text(animal.name),
-                  content: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('Gatunek: ${animal.species}'),
-                      Text('Wiek: ${animal.age}'),
-                      Text('Waga: ${animal.weight} kg'),
-                      Text('Pochodzenie: ${animal.origin}'),
-                      Text('Dieta: ${animal.diet}'),
-                      Text('Siedlisko: ${animal.habitat}'),
-                      Text('Zagrożony: ${animal.isEndangered ? "Tak" : "Nie"}'),
-                      Text('Sekcja zoo: ${animal.zooSection}'),
-                      const SizedBox(height: 8),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          ElevatedButton.icon(
-                            onPressed: () {
-                              Navigator.pop(context);
-                              showDialog(
-                                context: context,
-                                builder: (_) => AlertDialog(
-                                  title: Text('Szczegóły: ${animal.name}'),
-                                  content: Column(
+                  content: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Gatunek: ${animal.species}'),
+                        Text('Wiek: ${animal.age}'),
+                        Text('Waga: ${animal.weight} kg'),
+                        Text('Pochodzenie: ${animal.origin}'),
+                        Text('Dieta: ${animal.diet}'),
+                        Text('Siedlisko: ${animal.habitat}'),
+                        Text('Zagrożony: ${animal.isEndangered ? "Tak" : "Nie"}'),
+                        Text('Sekcja zoo: ${animal.zooSection}'),
+                        const SizedBox(height: 8),
+                        ElevatedButton.icon(
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder: (_) => AlertDialog(
+                                title: Text('Szczegóły: ${animal.name}'),
+                                content: SingleChildScrollView(
+                                  child: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
@@ -166,7 +164,7 @@ class _AnimalListPageState extends State<AnimalListPage> {
                                       Align(
                                         alignment: Alignment.centerRight,
                                         child: ElevatedButton.icon(
-                                          onPressed: () => Navigator.pop(context),
+                                          onPressed: () => Navigator.pop(context), // zamyka tylko szczegóły
                                           icon: const Icon(Icons.arrow_back),
                                           label: const Text('Wróć'),
                                           style: ElevatedButton.styleFrom(
@@ -177,31 +175,32 @@ class _AnimalListPageState extends State<AnimalListPage> {
                                       ),
                                     ],
                                   ),
-                                  actions: [],
                                 ),
-                              );
-                            },
-                            icon: const Icon(Icons.list_alt),
-                            label: const Text('Pokaż szczegóły'),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.deepPurple,
-                              foregroundColor: Colors.white,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                            ),
+                                actions: [],
+                              ),
+                            );
+                          },
+                          icon: const Icon(Icons.list_alt),
+                          label: const Text('Pokaż szczegóły'),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.deepPurple,
+                            foregroundColor: Colors.white,
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                           ),
-                          ElevatedButton.icon(
-                            onPressed: () => Navigator.pop(context),
-                            icon: const Icon(Icons.arrow_back),
-                            label: const Text('Wróć'),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.orange,
-                              foregroundColor: Colors.white,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                            ),
+                        ),
+                        const SizedBox(height: 8),
+                        ElevatedButton.icon(
+                          onPressed: () => Navigator.pop(context),
+                          icon: const Icon(Icons.arrow_back),
+                          label: const Text('Wróć'),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.orange,
+                            foregroundColor: Colors.white,
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                           ),
-                        ],
-                      ),
-                    ],
+                        ),
+                      ],
+                    ),
                   ),
                   actions: [],
                 ),
@@ -210,24 +209,30 @@ class _AnimalListPageState extends State<AnimalListPage> {
           );
         },
       ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: ElevatedButton.icon(
-          onPressed: () async {
-            final prefs = await SharedPreferences.getInstance();
-            await prefs.remove('zoo_animals');
-            setState(() {
-              isLoading = true;
-              showList = false;
-            });
-            loadAnimals();
-          },
-          icon: const Icon(Icons.refresh),
-          label: const Text('Wyczyść cache i wczytaj z pliku'),
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.orange,
-            foregroundColor: Colors.white,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      bottomNavigationBar: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
+          child: SizedBox(
+            width: double.infinity,
+            height: 56,
+            child: ElevatedButton.icon(
+              onPressed: () async {
+                final prefs = await SharedPreferences.getInstance();
+                await prefs.remove('zoo_animals');
+                setState(() {
+                  isLoading = true;
+                  showList = false;
+                });
+                loadAnimals();
+              },
+              icon: const Icon(Icons.refresh),
+              label: const Text('Wyczyść cache i wczytaj z pliku'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.orange,
+                foregroundColor: Colors.white,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+              ),
+            ),
           ),
         ),
       ),
