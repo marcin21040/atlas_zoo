@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'animal.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:http/http.dart' as http;
 
 void main() {
   runApp(const MyApp());
@@ -44,20 +45,37 @@ class _AnimalListPageState extends State<AnimalListPage> {
   Future<void> loadAnimals() async {
     final prefs = await SharedPreferences.getInstance();
     final cached = prefs.getString('zoo_animals');
-    if (cached != null) {
-      final List<dynamic> jsonList = json.decode(cached);
-      setState(() {
-        animals = jsonList.map((e) => Animal.fromJson(e)).toList();
-        isLoading = false;
-      });
-    } else {
-      final jsonString = await rootBundle.loadString('lib/zoo_animals.json');
-      final List<dynamic> jsonList = json.decode(jsonString);
-      await prefs.setString('zoo_animals', jsonString);
-      setState(() {
-        animals = jsonList.map((e) => Animal.fromJson(e)).toList();
-        isLoading = false;
-      });
+    bool updatedFromWeb = false;
+    try {
+      final response = await http.get(Uri.parse(
+        'https://raw.githubusercontent.com/marcin21040/atlas_zoo/main/lib/zoo_animals.json',
+      ));
+      if (response.statusCode == 200) {
+        await prefs.setString('zoo_animals', response.body);
+        final List<dynamic> jsonList = json.decode(response.body);
+        setState(() {
+          animals = jsonList.map((e) => Animal.fromJson(e)).toList();
+          isLoading = false;
+        });
+        updatedFromWeb = true;
+      }
+    } catch (_) {}
+    if (!updatedFromWeb) {
+      if (cached != null) {
+        final List<dynamic> jsonList = json.decode(cached);
+        setState(() {
+          animals = jsonList.map((e) => Animal.fromJson(e)).toList();
+          isLoading = false;
+        });
+      } else {
+        final jsonString = await rootBundle.loadString('lib/zoo_animals.json');
+        final List<dynamic> jsonList = json.decode(jsonString);
+        await prefs.setString('zoo_animals', jsonString);
+        setState(() {
+          animals = jsonList.map((e) => Animal.fromJson(e)).toList();
+          isLoading = false;
+        });
+      }
     }
   }
 
