@@ -1,0 +1,152 @@
+[
+  {
+    "name": "Lew",
+    "species": "Panthera leo",
+    "age": 8,
+    "weight": 190.5,
+    "origin": "Afryka",
+    "diet": "Mięsożerny",
+    "habitat": "Sawanna",
+    "isEndangered": false,
+    "zooSection": "Ssaki",
+    "details": {
+      "color": "Złoty",
+      "group": "Stado"
+    }
+  },
+  {
+    "name": "Słoń afrykański",
+    "species": "Loxodonta africana",
+    "age": 25,
+    "weight": 5400,
+    "origin": "Afryka",
+    "diet": "Roślinożerny",
+    "habitat": "Sawanna",
+    "isEndangered": true,
+    "zooSection": "Ssaki",
+    "details": {
+      "color": "Szary",
+      "group": "Stado"
+    }
+  },
+  {
+    "name": "Tygrys bengalski",
+    "species": "Panthera tigris tigris",
+    "age": 6,
+    "weight": 220,
+    "origin": "Azja",
+    "diet": "Mięsożerny",
+    "habitat": "Las tropikalny",
+    "isEndangered": true,
+    "zooSection": "Ssaki",
+    "details": {
+      "color": "Pomarańczowy z czarnymi paskami",
+      "group": "Samotnik"
+    }
+  },
+  {
+    "name": "Żyrafa",
+    "species": "Giraffa camelopardalis",
+    "age": 12,
+    "weight": 800,
+    "origin": "Afryka",
+    "diet": "Roślinożerny",
+    "habitat": "Sawanna",
+    "isEndangered": false,
+    "zooSection": "Ssaki",
+    "details": {
+      "color": "Żółto-brązowy",
+      "group": "Stado"
+    }
+  },
+  {
+    "name": "Pingwin cesarski",
+    "species": "Aptenodytes forsteri",
+    "age": 5,
+    "weight": 30,
+    "origin": "Antarktyda",
+    "diet": "Mięsożerny",
+    "habitat": "Lód",
+    "isEndangered": false,
+    "zooSection": "Ptaki",
+    "details": {
+      "color": "Czarno-biały",
+      "group": "Kolonia"
+    }
+  },
+  {
+    "name": "Panda wielka",
+    "species": "Ailuropoda melanoleuca",
+    "age": 10,
+    "weight": 100,
+    "origin": "Chiny",
+    "diet": "Roślinożerny",
+    "habitat": "Las bambusowy",
+    "isEndangered": true,
+    "zooSection": "Ssaki",
+    "details": {
+      "color": "Czarno-biały",
+      "group": "Samotnik"
+    }
+  },
+  {
+    "name": "Orangutan borneański",
+    "species": "Pongo pygmaeus",
+    "age": 15,
+    "weight": 80,
+    "origin": "Borneo",
+    "diet": "Roślinożerny",
+    "habitat": "Las tropikalny",
+    "isEndangered": true,
+    "zooSection": "Ssaki",
+    "details": {
+      "color": "Rudy",
+      "group": "Samotnik"
+    }
+  },
+  {
+    "name": "Krokodyl nilowy",
+    "species": "Crocodylus niloticus",
+    "age": 40,
+    "weight": 500,
+    "origin": "Afryka",
+    "diet": "Mięsożerny",
+    "habitat": "Rzeka",
+    "isEndangered": false,
+    "zooSection": "Gady",
+    "details": {
+      "color": "Zielono-brązowy",
+      "group": "Samotnik"
+    }
+  },
+  {
+    "name": "Flaming różowy",
+    "species": "Phoenicopterus roseus",
+    "age": 7,
+    "weight": 3,
+    "origin": "Afryka, Azja, Europa",
+    "diet": "Roślinożerny",
+    "habitat": "Jezioro",
+    "isEndangered": false,
+    "zooSection": "Ptaki",
+    "details": {
+      "color": "Różowy",
+      "group": "Stado"
+    }
+  },
+  {
+    "name": "Wilk szary",
+    "species": "Canis lupus",
+    "age": 9,
+    "weight": 45,
+    "origin": "Europa, Azja, Ameryka Północna",
+    "diet": "Mięsożerny",
+    "habitat": "Las, tundra",
+    "isEndangered": false,
+    "zooSection": "Ssaki",
+    "details": {
+      "color": "Szary",
+      "group": "Wataha"
+    }
+  }
+]
